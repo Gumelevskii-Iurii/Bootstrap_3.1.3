@@ -14,8 +14,6 @@ public interface RoleDao {
 
     public Role getRoleByName(String name);
 
-//    public Role getRoleById(long id);
-
     Collection<Role> findByIdRoles(List<Long>roles);
 
 

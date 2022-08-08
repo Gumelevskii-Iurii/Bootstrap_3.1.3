@@ -30,11 +30,6 @@ public class RoleDaoImpl implements RoleDao {
         return new HashSet<>(q.getResultList());
     }
 
-//    @Override
-//    public Role getRoleById(long id) {
-//        return entityManager.find(Role.class, id);
-//    }
-
     @Override
     @Transactional
     public void addRole(Role role) {

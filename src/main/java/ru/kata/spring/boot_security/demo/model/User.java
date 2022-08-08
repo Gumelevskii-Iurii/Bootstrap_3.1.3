@@ -2,7 +2,6 @@ package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -62,6 +61,19 @@ public class User implements UserDetails {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getRolesString() {
+        StringBuilder sb = new StringBuilder();
+        for (Role role : roles) {
+            if (role.getName().contains("ROLE_ADMIN")) {
+                sb.append("ADMIN");
+            } else if (role.getName().contains("ROLE_USER")) {
+                sb.append("USER");
+            }
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 
 
