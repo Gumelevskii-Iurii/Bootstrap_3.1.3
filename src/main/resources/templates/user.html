@@ -23,11 +23,6 @@
             <td th:text="${user.email}">Email</td>
             with roles:
             <td th:text="${user.getRolesString()}">Roles</td>
-            <!--            <td>-->
-            <!--                <th:block th:each="role: ${user.roles}"-->
-            <!--                          th:text="${role.name} + ' '">-->
-            <!--                </th:block>-->
-            <!--            </td>-->
         </tr>
     </a>
 
@@ -93,11 +88,6 @@
                                         <td th:text="${user.email}">Email</td>
                                         <td th:text="${user.age}">Age</td>
                                         <td th:text="${user.getRolesString()}">Roles</td>
-                                        <!--                                        <td>-->
-                                        <!--                                            <th:block th:each="role: ${user.roles}"-->
-                                        <!--                                                      th:text="${role.name} + ' '">-->
-                                        <!--                                            </th:block>-->
-                                        <!--                                        </td>-->
                                     </tr>
                                     </tbody>
                                 </table>

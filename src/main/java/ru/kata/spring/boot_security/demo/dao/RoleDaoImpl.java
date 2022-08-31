@@ -6,10 +6,8 @@ import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -21,19 +19,6 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public List<Role> listRoles() {
         return entityManager.createQuery("select r from Role r", Role.class).getResultList();
-    }
-
-    @Override
-    public Collection<Role> findByIdRoles(List<Long> roles) {
-        TypedQuery<Role> q = entityManager.createQuery("select r from Role r where r.id in :role", Role.class);
-        q.setParameter("role",roles);
-        return new HashSet<>(q.getResultList());
-    }
-
-    @Override
-    @Transactional
-    public void addRole(Role role) {
-        entityManager.persist(role);
     }
 
     @Override
@@ -49,4 +34,19 @@ public class RoleDaoImpl implements RoleDao {
         }
         return role;
     }
+
+    @Override
+    public void addUserRole(User user, String roleAdmin, String roleUser) {
+        Collection<Role> roles = new ArrayList<>();
+        if (roleUser != null && roleUser.equals("ROLE_USER") && (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN"))) {
+            roles.add(getRoleByName("ROLE_USER"));
+            roles.add(getRoleByName("ROLE_ADMIN"));
+        } else if (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN")) {
+            roles.add(getRoleByName("ROLE_ADMIN"));
+        } else if (roleUser != null && roleUser.equals("ROLE_USER")) {
+            roles.add(getRoleByName("ROLE_USER"));
+        }
+        user.setRoles(roles);
+    }
+
 }
