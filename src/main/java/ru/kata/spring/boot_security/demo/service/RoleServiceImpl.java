@@ -5,6 +5,7 @@ import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -22,6 +23,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public void addUserRole(User user, String roleAdmin, String roleUser) {
         roleDao.addUserRole(user, roleAdmin, roleUser);
     }

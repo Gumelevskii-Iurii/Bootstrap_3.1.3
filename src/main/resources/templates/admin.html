@@ -173,21 +173,27 @@
                                                                        th:value="${user.password}"/>
                                                                 <br>
 
+
                                                                 <label>
-                                                                    <input type="checkbox"
-                                                                           name="roleUser"
+                                                                    <input th:type="checkbox"
+                                                                           th:name="roleUser"
                                                                            th:value="ROLE_USER"
                                                                            th:text="User"
+                                                                           th:checked="${user.getRolesString().contains('USER')? true: false}"
                                                                     >
+
                                                                 </label>
+
                                                                 <label>
-                                                                    <input type="checkbox"
-                                                                           name="roleAdmin"
+                                                                    <input th:type="checkbox"
+                                                                           th:name="roleAdmin"
                                                                            th:value="ROLE_ADMIN"
                                                                            th:text="Admin"
-
+                                                                           th:checked="${user.getRolesString().contains('ADMIN')? true: false}"
                                                                     >
                                                                 </label>
+
+<!--                                                                </div>-->
 
                                                                 <!--                                                            <br>&ndash;&gt;-->
 

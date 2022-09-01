@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -29,17 +30,21 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserById(id);
     }
 
+
     @Override
+    @Transactional
     public void addUser(User user) {
         userDao.addUser(user);
     }
 
     @Override
+    @Transactional
     public User deleteUser(long id) {
         return userDao.deleteUser(id);
     }
 
     @Override
+    @Transactional
     public User changeUser(User user) {
         return userDao.changeUser(user);
     }
